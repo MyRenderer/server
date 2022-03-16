@@ -1,0 +1,28 @@
+@startuml
+class Project {
+    id: uuid;
+    name: string;
+    overlays: Overlay[];
+}
+class Overlay {
+    id: uuid;
+    name: string;
+    template: Template;
+    properties: object;
+}
+class Template {
+    id: uuid;
+    name: string;
+    properties: TemplateProperty[];
+}
+class TemplateProperty {
+    id: uuid;
+    name: string;
+    type: enum { number; string; date; };
+}
+
+Project "1" --  "*" Overlay
+Overlay "*" -- "1" Template
+Template "1" -- "*" TemplateProperty
+
+@enduml
