@@ -1,8 +1,0 @@
-version: "2.4"
-services:
-  server:
-    image: registry.cn-beijing.aliyuncs.com/myrenderer/server:latest
-    ports:
-      - "8080:8080"
-    volumes:
-      - "./resource.json:/node-app/dist/resource.json"
