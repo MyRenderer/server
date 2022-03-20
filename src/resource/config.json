@@ -1,0 +1,6 @@
+{
+  "db": {
+    "url": "postgresql://dummy:dummy@localhost:5432/renderer",
+    "schema": "server"
+  }
+}

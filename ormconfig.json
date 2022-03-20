@@ -1,0 +1,15 @@
+{
+  "type": "postgres",
+  "host": "localhost",
+  "port": 5432,
+  "username": "dummy",
+  "password": "dummy",
+  "database": "renderer",
+  "entities": [
+    "dist/entity/*.js"
+  ],
+  "schema": "server",
+  "cli": {
+    "migrationsDir": "src/migration"
+  }
+}
