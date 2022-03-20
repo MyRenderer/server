@@ -16,5 +16,5 @@ jobs:
       uses: docker/build-push-action@v1
       with:
         registry: registry.cn-beijing.aliyuncs.com
-        repository: registry.cn-beijing.aliyuncs.com/myrenderer/server
+        repository: myrenderer/server
         tags: latest
