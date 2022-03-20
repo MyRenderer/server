@@ -3,7 +3,7 @@ import { createServer, Server } from 'http';
 import * as express from 'express';
 import * as cors from 'cors';
 import { useExpressServer } from 'routing-controllers';
-import { PORT } from './constant';
+import { APPLICATION_NAME, PORT } from './constant';
 
 const requestLogger = (req: express.Request, res: express.Response, next: express.NextFunction) => {
   console.info(`Receiving ${req.method} request ${req.path}`);
@@ -16,7 +16,12 @@ export async function initializeHttpServer(): Promise<Server> {
   app.use(cors());
   app.use(requestLogger);
 
-  // Use routing-controllers
+  // health check
+  app.get('/', (req: express.Request, res: express.Response) => {
+    res.status(200).json({ application: APPLICATION_NAME });
+  });
+
+  // use routing-controllers
   const server = createServer(useExpressServer(app, {
     controllers: [path.resolve(__dirname, '../controller/*.js')],
   }));

@@ -58,3 +58,7 @@ Use [AliCloud ApsaraVideo Live](https://www.aliyun.com/product/live?spm=5176.197
         }
     }
     ```
+
+### Local Development
+1. npm i 
+2. npm run dev
