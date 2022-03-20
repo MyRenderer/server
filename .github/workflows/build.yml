@@ -1,0 +1,20 @@
+name: build
+
+on:
+  push:
+    branches:
+      - master
+
+jobs:
+  build:
+    runs-on: ubuntu-20.04
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v2
+
+    - name: Docker build & publish
+      uses: docker/build-push-action@v1
+      with:
+        registry: registry.cn-beijing.aliyuncs.com
+        repository: registry.cn-beijing.aliyuncs.com/myrenderer/server
+        tags: latest
