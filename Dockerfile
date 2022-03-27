@@ -3,13 +3,17 @@ FROM node:14-alpine as build
 
 RUN apk add --no-cache git
 
+ARG GITHUB_USER
+ARG GITHUB_TOKEN
+
 WORKDIR /node-app
 
 COPY package.json /node-app
 COPY package-lock.json /node-app
 
 # Configure git, Install all dependencies.
-RUN npm config set unsafe-perm true && \
+RUN git config --global url."https://${GITHUB_USER}:${GITHUB_TOKEN}@github.com".insteadOf "https://github.com" && \
+    npm config set unsafe-perm true && \
     npm ci && \
     npm config set unsafe-perm false
 
