@@ -1,5 +1,10 @@
 import { IsNotEmpty, IsObject, IsOptional, IsString } from 'class-validator';
 
+export enum ProjectStatus {
+  running = 'running',
+  stopped = 'stopped',
+}
+
 export enum OverlayStatus {
   up = 'up',
   down = 'down',
@@ -19,6 +24,8 @@ export interface ProjectResponse {
   name: string;
   inputStreamUrl?: string;
   outputStreamUrl?: string;
+  renderUrl?: string;
+  status: ProjectStatus;
   createTime: Date;
 }
 
@@ -46,6 +53,28 @@ export class CreateProjectRequest {
   @IsString()
   @IsOptional()
   outputStreamUrl?: string;
+
+  @IsString()
+  @IsOptional()
+  renderUrl?: string;
+}
+
+export class UpdateProjectRequest {
+  @IsString()
+  @IsOptional()
+  name?: string;
+
+  @IsString()
+  @IsOptional()
+  inputStreamUrl?: string;
+
+  @IsString()
+  @IsOptional()
+  outputStreamUrl?: string;
+
+  @IsString()
+  @IsOptional()
+  renderUrl?: string;
 }
 
 export class CreateOverlayRequest {

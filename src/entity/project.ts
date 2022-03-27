@@ -1,5 +1,6 @@
 import { Column, CreateDateColumn, Entity, OneToMany, PrimaryGeneratedColumn } from 'typeorm';
 import { Overlay } from './overlay';
+import { ProjectStatus } from '../component/types';
 
 @Entity()
 export class Project {
@@ -10,13 +11,19 @@ export class Project {
   name: string;
 
   @Column('text', { nullable: true })
-  inputStreamUrl: string;
+  inputStreamUrl: string | null;
 
   @Column('text', { nullable: true })
-  outputStreamUrl: string;
+  outputStreamUrl: string | null;
+
+  @Column('text', { nullable: true })
+  renderUrl: string | null;
 
   @OneToMany(() => Overlay, overlay => overlay.project)
   overlays: Overlay[];
+
+  @Column('text', { default: ProjectStatus.stopped })
+  status: ProjectStatus;
 
   @CreateDateColumn({ type: 'timestamp with time zone', default: () => 'Now()' })
   createTime: Date;
