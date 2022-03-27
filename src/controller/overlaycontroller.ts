@@ -1,5 +1,5 @@
 import { Body, Get, HttpCode, JsonController, NotFoundError, Param, Patch, Post } from 'routing-controllers';
-import { CreateOverlayRequest, MessageType, OverlayResponse, OverlayStatus, ProjectResponse, UpdateOverlayRequest } from '../component/types';
+import { CreateOverlayRequest, MessageType, OverlayResponse, OverlayStatus, UpdateOverlayRequest } from '../component/types';
 import { Overlay } from '../entity/overlay';
 import { StatusCodes } from 'http-status-codes';
 import { getRepository } from '../component/db';
@@ -79,7 +79,7 @@ export class OverlayController {
   }
 
   @Post('/v1/projects/:projectId/overlays/:overlayId/down')
-  public async down(@Param('projectId') projectId: string, @Param('overlayId') overlayId: string): Promise<ProjectResponse> {
+  public async down(@Param('projectId') projectId: string, @Param('overlayId') overlayId: string): Promise<OverlayResponse> {
     const overlay = await this.findOverlay(projectId, overlayId);
     overlay.status = OverlayStatus.down;
     await this.overlayRepository.save(overlay);
