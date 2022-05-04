@@ -1,4 +1,4 @@
-import { Body, Get, HttpCode, JsonController, NotFoundError, Param, Patch, Post } from 'routing-controllers';
+import { Body, Delete, Get, HttpCode, JsonController, NotFoundError, OnUndefined, Param, Patch, Post } from 'routing-controllers';
 import { CreateOverlayRequest, MessageType, OverlayResponse, OverlayStatus, UpdateOverlayRequest } from '../component/types';
 import { Overlay } from '../entity/overlay';
 import { StatusCodes } from 'http-status-codes';
@@ -66,6 +66,13 @@ export class OverlayController {
     const response = getResponse(overlay);
     notifyAll(projectId, MessageType.overlayUpdate, { overlay: response });
     return response;
+  }
+
+  @Delete('/v1/projects/:projectId/overlays/:overlayId')
+  @OnUndefined(StatusCodes.NO_CONTENT)
+  public async delete(@Param('projectId') projectId: string, @Param('overlayId') overlayId: string): Promise<void> {
+    const overlay = await this.findOverlay(projectId, overlayId);
+    await this.overlayRepository.remove(overlay);
   }
 
   @Post('/v1/projects/:projectId/overlays/:overlayId/up')

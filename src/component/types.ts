@@ -1,5 +1,44 @@
 import { IsNotEmpty, IsObject, IsOptional, IsString } from 'class-validator';
 
+export class LoginRequest {
+  @IsString()
+  @IsNotEmpty()
+  username: string;
+
+  @IsString()
+  @IsNotEmpty()
+  password: string;
+}
+
+export class CreateUserRequest {
+  @IsString()
+  @IsNotEmpty()
+  username: string;
+
+  @IsString()
+  @IsNotEmpty()
+  password: string;
+
+  @IsString({ each: true })
+  @IsNotEmpty()
+  roles: string[];
+}
+
+export interface TokenResponse {
+  token: string;
+}
+
+export interface RoleResponse {
+  id: string;
+  name: string;
+}
+
+export interface UserResponse {
+  id: string;
+  username: string;
+  roles: RoleResponse[];
+}
+
 export enum ProjectStatus {
   running = 'running',
   stopped = 'stopped',

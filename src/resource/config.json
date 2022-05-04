@@ -1,6 +1,9 @@
 {
   "db": {
-    "url": "postgresql://dummy:dummy@localhost:5432/renderer",
+    "url": "postgresql://dummy:dummy@localhost:5432/myrenderer",
     "schema": "server"
+  },
+  "token": {
+    "expireIn": 86400
   }
 }

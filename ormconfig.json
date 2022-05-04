@@ -4,7 +4,7 @@
   "port": 5432,
   "username": "dummy",
   "password": "dummy",
-  "database": "renderer",
+  "database": "myrenderer",
   "entities": [
     "dist/entity/*.js"
   ],
