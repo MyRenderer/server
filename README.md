@@ -62,3 +62,6 @@ Use [AliCloud ApsaraVideo Live](https://www.aliyun.com/product/live?spm=5176.197
 ### Local Development
 1. npm i 
 2. npm run dev
+
+### Init Database
+DB_HOST=<dbHost> DB_USER=<dbUser> DB_PASSWORD=<dbPassword> ROOT_PASSWORD=<rootPassword> npm run initDB
